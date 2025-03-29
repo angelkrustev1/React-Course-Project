@@ -27,12 +27,12 @@ export default function Footer() {
                             </Link>
                         </li>
                         <li>
-                            <Link to="/about" className="text-gray-300 hover:text-green-500 transition duration-300 ease-in-out">
+                            <Link to="#" className="text-gray-300 hover:text-green-500 transition duration-300 ease-in-out">
                                 About Us
                             </Link>
                         </li>
                         <li>
-                            <Link to="/contact" className="text-gray-300 hover:text-green-500 transition duration-300 ease-in-out">
+                            <Link to="#" className="text-gray-300 hover:text-green-500 transition duration-300 ease-in-out">
                                 Contact
                             </Link>
                         </li>
@@ -44,12 +44,12 @@ export default function Footer() {
                     <h4 className="text-xl font-semibold text-green-500 mb-6">Contact</h4>
                     <ul className="space-y-3">
                         <li>
-                            <Link to="mailto:support@ecommerce.com" className="text-gray-300 hover:text-green-500 transition duration-300 ease-in-out">
+                            <Link to="#" className="text-gray-300 hover:text-green-500 transition duration-300 ease-in-out">
                                 support@ecommerce.com
                             </Link>
                         </li>
                         <li>
-                            <Link to="tel:+1234567890" className="text-gray-300 hover:text-green-500 transition duration-300 ease-in-out">
+                            <Link to="#" className="text-gray-300 hover:text-green-500 transition duration-300 ease-in-out">
                                 +1 234 567 89
                             </Link>
                         </li>

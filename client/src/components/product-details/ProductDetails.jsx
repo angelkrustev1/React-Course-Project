@@ -3,7 +3,7 @@ import ReviewsSection from "../reviews-section/ReviewsSection";
 export default function ProductDetails() {
     return (
         <>
-            <section className="bg-gray-100 py-16">
+            <section className="bg-gray-300 py-16">
                 <div className="container mx-auto px-6">
                     {/* Product Details Section */}
                     <div className="flex flex-col lg:flex-row bg-white shadow-lg rounded-lg overflow-hidden">
