@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import useMobile from "./api/useMobile";
-import Dropdown from "./navigation-dropdown/Dropdown";
+import Dropdown from "./dropdown/Dropdown";
 import Navigation from "./navigation/Navigation";
 
 export default function Header() {
