@@ -1,3 +1,5 @@
+import useForm from "../../hooks/useForm";
+
 export default function ProductCreate() {
     return (
         <div className="flex justify-center items-center min-h-screen bg-gray-300 px-4">
@@ -17,7 +19,8 @@ export default function ProductCreate() {
                             name="name"
                             className="w-full p-2 border rounded mt-1 focus:ring focus:ring-green-300"
                             placeholder="Enter product name"
-                            required
+                            required={true}
+                            // value={values.name}
                         />
                     </div>
 

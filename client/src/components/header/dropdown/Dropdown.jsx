@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router";
+import { UserContext } from "../../../contexts/UserContext";
 
 export default function Dropdown() {
     const [isOpen, setIsOpen] = useState(false);
+    const { accessToken } = useContext(UserContext)
 
     return (
         <div className="relative">
@@ -20,18 +22,28 @@ export default function Dropdown() {
                     <Link to="/products" className="block px-4 py-2 hover:bg-green-600">
                         Products
                     </Link>
-                    <Link to="/login" className="block px-4 py-2 hover:bg-green-600">
-                        Login
-                    </Link>
-                    <Link to="/register" className="block px-4 py-2 hover:bg-green-600">
-                        Register
-                    </Link>
-                    <Link to="/logout" className="block px-4 py-2 hover:bg-green-600">
-                        Logout
-                    </Link>
-                    <Link to="/products/add" className="block px-4 py-2 hover:bg-green-600">
-                        Add Products
-                    </Link>
+                    {accessToken
+                        ? (
+                            <>
+                                <Link to="/logout" className="block px-4 py-2 hover:bg-green-600">
+                                    Logout
+                                </Link>
+                                <Link to="/products/add" className="block px-4 py-2 hover:bg-green-600">
+                                    Add Products
+                                </Link>
+                            </>
+                        )
+                        : (
+                            <>
+                                <Link to="/login" className="block px-4 py-2 hover:bg-green-600">
+                                    Login
+                                </Link>
+                                <Link to="/register" className="block px-4 py-2 hover:bg-green-600">
+                                    Register
+                                </Link>
+                            </>
+                        )
+                    }
                 </div>
             )}
         </div>
