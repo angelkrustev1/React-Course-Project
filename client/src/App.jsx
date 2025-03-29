@@ -1,5 +1,4 @@
 import { Route, Routes } from 'react-router'
-import './App.css'
 import Header from './components/header/Header'
 import Home from './components/home/Home'
 import Login from './components/login/Login'
@@ -10,10 +9,18 @@ import ProductsPage from './components/products-page/ProductsPage'
 import ProductCreate from './components/product-create/ProductCreate'
 import ProductDetails from './components/product-details/ProductDetails'
 import ProductEdit from './components/product-edit/ProductEdit'
+import { useState } from 'react'
+import { UserContext } from './contexts/UserContext'
+import './App.css'
 
 function App() {
+    const [user, setUser] = useState({})
+
+    const userLoginHandler = (authData) => setUser(authData)
+    const userLogoutHandler = () => setUser({})
+
     return (
-        <>
+        <UserContext.Provider values={{ ...user, userLoginHandler, userLogoutHandler }}>
             <Header />
 
             <Routes>
@@ -28,7 +35,7 @@ function App() {
             </Routes>
 
             <Footer />
-        </>
+        </UserContext.Provider>
     )
 }
 

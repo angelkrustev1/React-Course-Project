@@ -4,7 +4,7 @@ import ProductsCatalog from "../products-cataog/ProductsCatalog";
 export default function Home() {
     return (
         <>
-            <section className="bg-white py-16">
+            <section className="bg-gray py-16">
                 <div className="container mx-auto px-4 text-center">
                     {/* Title */}
                     <h2 className="text-3xl font-bold text-green-700 mb-6">
