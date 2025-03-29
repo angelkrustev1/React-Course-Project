@@ -20,7 +20,7 @@ function App() {
     const userLogoutHandler = () => setUser({})
 
     return (
-        <UserContext.Provider values={{ ...user, userLoginHandler, userLogoutHandler }}>
+        <UserContext.Provider value={{ ...user, userLoginHandler, userLogoutHandler }}>
             <Header />
 
             <Routes>

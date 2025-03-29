@@ -1,28 +1,37 @@
+import { useState } from "react";
 import { Link } from "react-router";
-import useToggled from "../../../hooks/useToggled";
 
 export default function Dropdown() {
-    const { isToggled, toggledHandler } = useToggled();
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
         <div className="relative">
+            {/* Button to toggle dropdown */}
             <button
-                id="menu-toggle"
-                className="text-green-700 focus:outline-none text-xl"
-                onClick={toggledHandler}
+                onClick={() => setIsOpen(!isOpen)}
+                className="text-white text-xl"
             >
                 ☰
             </button>
-            {isToggled && (
-                <div
-                    id="mobile-menu"
-                    className="absolute right-0 mt-3 w-52 bg-white shadow-lg rounded-lg"
-                >
-                    <Link to="/products" className="block px-5 py-3 text-green-700 hover:bg-green-200">Products</Link>
-                    <Link to="/login" className="block px-5 py-3 text-green-700 hover:bg-green-200">Login</Link>
-                    <Link to="/register" className="block px-5 py-3 text-green-700 hover:bg-green-200">Register</Link>
-                    <Link to="/logout" className="block px-5 py-3 text-green-700 hover:bg-green-200">Logout</Link>
-                    <Link to="/products/add" className="block px-5 py-3 text-green-700 hover:bg-green-200">Add Item</Link>
+
+            {/* Dropdown Menu */}
+            {isOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-green-700 text-white rounded-lg shadow-lg">
+                    <Link to="/products" className="block px-4 py-2 hover:bg-green-600">
+                        Products
+                    </Link>
+                    <Link to="/login" className="block px-4 py-2 hover:bg-green-600">
+                        Login
+                    </Link>
+                    <Link to="/register" className="block px-4 py-2 hover:bg-green-600">
+                        Register
+                    </Link>
+                    <Link to="/logout" className="block px-4 py-2 hover:bg-green-600">
+                        Logout
+                    </Link>
+                    <Link to="/products/add" className="block px-4 py-2 hover:bg-green-600">
+                        Add Products
+                    </Link>
                 </div>
             )}
         </div>

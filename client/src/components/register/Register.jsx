@@ -1,6 +1,6 @@
 export default function Register() {
     return (
-        <div className="flex justify-center items-center min-h-screen bg-gray-100 px-4">
+        <div className="flex justify-center items-center min-h-screen bg-gray-300 px-4">
             <div className="bg-white px-8 py-6 rounded-lg shadow-lg w-full max-w-sm sm:w-96">
                 <h2 className="text-2xl font-bold text-center text-green-700">
                     Register

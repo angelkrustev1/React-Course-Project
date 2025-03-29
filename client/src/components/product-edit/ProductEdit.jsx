@@ -1,6 +1,6 @@
 export default function ProductEdit() {
     return (
-        <div className="flex justify-center items-center min-h-screen bg-gray-100 px-4">
+        <div className="flex justify-center items-center min-h-screen bg-gray-300 px-4">
             <div className="bg-white px-6 py-6 rounded-lg shadow-lg w-full max-w-lg">
                 <h2 className="text-2xl font-bold text-center text-green-700 mb-4">
                     Edit Product
