@@ -32,7 +32,7 @@ export default function useForm(callBackFunction, initialValues = {}, params = {
             setValues(initialValues); 
             setSuccess(true);
         } catch (err) {
-            setError(err.message || 'An error occurred.');
+            setError(err.message || "An error occurred.");
         } finally {
             setPending(false);
         }

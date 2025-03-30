@@ -11,8 +11,8 @@ const baseUrl = 'http://localhost:3030/data/products';
 export default function ProductDetails() {
     const { productId } = useParams();
     const { _id: userId } = useContext(UserContext);
-    const { deleteProduct } = useProductDelete();
     const { pending, state: product } = useFetch(`${baseUrl}/${productId}`);
+    const { deleteProduct } = useProductDelete(product._ownerId || '');
 
     if (pending) {
         return (

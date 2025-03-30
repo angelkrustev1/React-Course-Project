@@ -7,8 +7,8 @@ const productsUrl = 'http://localhost:3030/data/products';
 
 export default function ProductEdit() {
     const { productId } = useParams();
-    const { initialValues, edit } = useProductEdit();
     const { pending: isFetchPending, state: product } = useFetch(`${productsUrl}/${productId}`)
+    const { initialValues, edit } = useProductEdit(product._ownerId || '');
     const {
         pending: isFormPending,
         values,

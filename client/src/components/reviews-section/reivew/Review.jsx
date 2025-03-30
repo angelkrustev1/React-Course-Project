@@ -12,8 +12,8 @@ export default function Review({
     _ownerId,
     onDelete,
 }) {
-    const { deleteReview } = useReviewDelete(onDelete);
     const { _id } = useContext(UserContext);
+    const { deleteReview } = useReviewDelete(onDelete, _ownerId);
 
     return (
         <div className="bg-white shadow-lg rounded-lg p-6 max-w-4xl mx-auto border border-gray-200">

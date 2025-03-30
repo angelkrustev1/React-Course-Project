@@ -4,10 +4,14 @@ import request from "../../../../utils/request";
 
 const reviewsUrl = 'http://localhost:3030/data/reviews'
 
-export default function useReviewDelete(onDelete) {
-    const { accessToken } = useContext(UserContext)
+export default function useReviewDelete(onDelete, _ownerId) {
+    const { _id: userId, accessToken } = useContext(UserContext)
 
     const deleteReview = async (reviewId) => {
+        if (userId !== _ownerId) {
+            return;
+        }
+
         const abortController = new AbortController();
         const options = {
             headers: {

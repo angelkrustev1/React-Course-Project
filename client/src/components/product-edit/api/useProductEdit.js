@@ -5,9 +5,9 @@ import request from "../../../utils/request";
 
 const productsUrl = 'http://localhost:3030/data/products'
 
-export default function useProductEdit() {
+export default function useProductEdit(_ownerId) {
     const navigate = useNavigate();
-    const { accessToken } = useContext(UserContext)
+    const { _id: userId, accessToken } = useContext(UserContext)
 
     const initialValues = {
         title: '',
@@ -22,6 +22,10 @@ export default function useProductEdit() {
         values: gameData,
         productId
     }) => {
+        if (userId !== _ownerId) {
+            return;
+        }
+
         const abortController = new AbortController();
         const options = {
             headers: {

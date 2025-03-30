@@ -5,11 +5,15 @@ import request from "../../../utils/request";
 
 const productsUrl = 'http://localhost:3030/data/products'
 
-export default function useProductDelete() {
+export default function useProductDelete(_ownerId) {
     const navigate = useNavigate();
-    const { accessToken } = useContext(UserContext)
+    const { _id: userId, accessToken } = useContext(UserContext)
 
     const deleteProduct = async (productId) => {
+        if (_ownerId !== userId) {
+            return;
+        }
+
         const abortController = new AbortController();
         const options = {
             headers: {
