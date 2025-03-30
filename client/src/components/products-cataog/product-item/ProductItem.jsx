@@ -2,7 +2,7 @@ import { Link } from "react-router";
 
 export default function ProductItem({
     _id,
-    title,
+    name,
     imageUrl,
     description,
 }) {
@@ -18,7 +18,7 @@ export default function ProductItem({
             <div className="p-6">
                 {/* Title */}
                 <h3 className="text-2xl font-bold text-green-800 hover:text-green-600 transition duration-200">
-                    {title}
+                    {name}
                 </h3>
                 {/* Description */}
                 <p className="text-gray-600 text-sm mt-2 leading-relaxed">

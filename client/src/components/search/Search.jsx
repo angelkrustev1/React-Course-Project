@@ -1,6 +1,10 @@
 import './Search.css'
 
-export default function Search() {
+export default function Search({ onSearch }) {
+    const changeHandler = (e) => {
+        onSearch(e.target.value)
+    }
+
     return (
         <>
             <div className="search-form-container">
@@ -11,6 +15,7 @@ export default function Search() {
                             name="search"
                             className="search-input"
                             placeholder="Search for products titles"
+                            onChange={changeHandler}
                         />
                         <button type="submit" className="search-button">
                             <span>🔍</span>
