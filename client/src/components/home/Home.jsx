@@ -15,7 +15,6 @@ export default function Home() {
                     Start your journey with us today and make your shopping experience unforgettable!
                 </p>
 
-
                 {/* Start Shopping Button */}
                 <Link
                     to="/products"

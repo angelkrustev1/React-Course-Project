@@ -1,13 +1,15 @@
 import { Link } from 'react-router';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import useFetch from '../../hooks/useFetch';
 import Spiner from '../spiner/Spiner';
 import Search from '../search/Search';
 import ProductItem from './product-item/ProductItem';
+import { UserContext } from '../../contexts/UserContext';
 
 const productsUrl = 'http://localhost:3030/data/products';
 
 export default function ProductsCatalog({ showSearch = true }) {
+    const { accessToken } = useContext(UserContext)
     const { pending, state: products } = useFetch(productsUrl, []);
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredProducts, setFilteredProducts] = useState([]);
@@ -63,12 +65,15 @@ export default function ProductsCatalog({ showSearch = true }) {
                         <p className='text-gray-500 text-sm mt-2'>
                             Check back later or explore other categories.
                         </p>
-                        <Link
-                            to='/products/add'
-                            className='mt-4 px-6 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition'
-                        >
-                            Add a Product
-                        </Link>
+                        {accessToken &&
+                            (
+                                <Link
+                                    to='/products/add'
+                                    className='mt-4 px-6 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition'
+                                >
+                                    Add a Product
+                                </Link>
+                            )}
                     </div>
                 </div>
             )}
