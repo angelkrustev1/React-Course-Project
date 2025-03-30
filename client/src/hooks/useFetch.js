@@ -13,11 +13,12 @@ export default function useFetch(url, defaultState = {}, modifyResponseData = de
 
         (async () => {
             try {
-                const result = await request.get(url, null, {
+                const data = await request.get(url, null, {
                     signal: abortController.signal,
                 });
                 
-                setState(modifyResponseData(result));
+                const result = modifyResponseData(data);
+                setState(result);
             } catch (error) {
                 if (error.name !== "AbortError") {
                     console.error("Fetch error:", error);

@@ -26,6 +26,7 @@ export default function ProductCreate() {
                             required={true}
                             value={values.name || ''}
                             onChange={changeHandler}
+                            maxLength={25}
                         />
                     </div>
 
@@ -43,6 +44,7 @@ export default function ProductCreate() {
                             required
                             value={values.category || ''}
                             onChange={changeHandler}
+                            maxLength={50}
                         />
                     </div>
 
@@ -112,6 +114,7 @@ export default function ProductCreate() {
                             required
                             value={values.description || ''}
                             onChange={changeHandler}
+                            maxLength={400}
                         />
                     </div>
 

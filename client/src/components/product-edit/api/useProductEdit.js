@@ -32,7 +32,7 @@ export default function useProductEdit() {
 
         await request.put(
             `${productsUrl}/${productId}`,
-            { ... gameData, _id: productId },
+            { ...gameData, _id: productId },
             options
         )
         navigate(`/products/${productId}/details`)

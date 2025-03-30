@@ -90,7 +90,7 @@ export default function ProductDetails() {
 
                     {/* Reviews Section */}
                     <div className="mt-12">
-                        <ReviewsSection />
+                        <ReviewsSection productId={productId}/>
                     </div>
                 </div>
             </section >

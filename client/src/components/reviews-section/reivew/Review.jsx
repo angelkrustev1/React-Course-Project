@@ -1,15 +1,46 @@
-export default function Review() {
+import { useContext } from "react";
+import formatDateTimestamp from "../../../utils/formatDateTimestamp";
+import useReviewDelete from "./api/useReviewDelete";
+import { UserContext } from "../../../contexts/UserContext";
+
+export default function Review({
+    _id: reviewId,
+    rating,
+    comment,
+    author,
+    _createdOn,
+    _ownerId,
+    onDelete,
+}) {
+    const { deleteReview } = useReviewDelete(onDelete);
+    const { _id } = useContext(UserContext);
+
     return (
-        <div className="bg-white shadow-lg rounded-lg p-6 max-w-4xl mx-auto">
+        <div className="bg-white shadow-lg rounded-lg p-6 max-w-4xl mx-auto border border-gray-200">
+            {/* Header Section */}
             <div className="flex justify-between items-center mb-4">
-                <h4 className="text-xl font-semibold text-green-800">John Doe</h4>
-                <span className="text-sm text-gray-600">Posted on: January 1, 2025</span>
+                <h4 className="text-xl font-semibold text-green-800">{author}</h4>
+                <span className="text-sm text-gray-600">Posted on: {formatDateTimestamp(_createdOn)}</span>
             </div>
-            <p className="text-gray-700 mb-4">
-                This is an excellent product! It's everything I was looking for and more. The quality is top-notch, and it works perfectly. Highly recommend it!
+
+            {/* Review Text */}
+            <p className="text-gray-700 mb-4 leading-relaxed">
+                {comment}
             </p>
-            <div className="flex space-x-2">
-                <span className="text-yellow-500">⭐⭐⭐⭐⭐</span>
+
+            {/* Rating and Delete Button */}
+            <div className="flex justify-between items-center mt-4">
+                <span className="text-bold-green-500 text-lg">{rating}/5⭐</span>
+
+                {/* Delete Button */}
+                {_id === _ownerId && (
+                    <button
+                        className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300"
+                        onClick={() => deleteReview(reviewId)}
+                    >
+                        Delete
+                    </button>
+                )}
             </div>
         </div>
     );
