@@ -1,11 +1,11 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router"
 import { UserContext } from "../../../contexts/UserContext";
 import request from "../../../utils/request";
 
 const productsUrl = 'http://localhost:3030/data/products'
 
-export default function useProductCreate() {
+export default function useProductEdit() {
     const navigate = useNavigate();
     const { accessToken } = useContext(UserContext)
 
@@ -18,8 +18,9 @@ export default function useProductCreate() {
         summary: '',
     }
 
-    const create = async ({
-        values: productData
+    const edit = async ({
+        values: gameData,
+        productId
     }) => {
         const abortController = new AbortController();
         const options = {
@@ -29,12 +30,16 @@ export default function useProductCreate() {
             signal: abortController.signal,
         }
 
-        await request.post(productsUrl, productData, options)
-        navigate('/products')
+        await request.put(
+            `${productsUrl}/${productId}`,
+            { ... gameData, _id: productId },
+            options
+        )
+        navigate(`/products/${productId}/details`)
     }
 
     return {
         initialValues,
-        create,
+        edit,
     }
 }

@@ -1,6 +1,18 @@
+import { Link, useParams } from "react-router";
 import ReviewsSection from "../reviews-section/ReviewsSection";
+import useFetch from "../../hooks/useFetch";
+import { useContext } from "react";
+import { UserContext } from "../../contexts/UserContext";
+import useProductDelete from "./api/useProductDelete";
+
+const baseUrl = 'http://localhost:3030/data/products'
 
 export default function ProductDetails() {
+    const { productId } = useParams()
+    const { _id: userId } = useContext(UserContext)
+    const { deleteProduct } = useProductDelete();
+    const { pednign, state: product } = useFetch(`${baseUrl}/${productId}`)
+
     return (
         <>
             <section className="bg-gray-300 py-16">
@@ -10,7 +22,7 @@ export default function ProductDetails() {
                         {/* Image Section */}
                         <div className="lg:w-1/3 w-full">
                             <img
-                                src="https://via.placeholder.com/600"
+                                src={product.imageUrl}
                                 alt="Product Image"
                                 className="w-full h-full object-cover rounded-lg shadow-lg"
                             />
@@ -20,25 +32,25 @@ export default function ProductDetails() {
                         <div className="lg:w-2/3 w-full p-6">
                             {/* Product Title */}
                             <h2 className="text-3xl lg:text-4xl font-extrabold text-green-800 mb-4">
-                                Product Name
+                                {product.name}
                             </h2>
-                            
+
                             {/* Product Category */}
                             <p className="text-lg text-gray-700 mb-4">
-                                <span className="font-semibold">Category: </span> Electronics
+                                <span className="font-semibold">Category: </span> {product.category}
                             </p>
-                            
+
                             {/* Product Price */}
-                            <p className="text-2xl font-bold text-green-700 mb-4">${99.99}</p>
+                            <p className="text-2xl font-bold text-green-700 mb-4">${product.price}</p>
 
                             {/* Product Quantity */}
                             <p className="text-gray-700 mb-6">
-                                Quantity Available: <span className="font-semibold">150</span>
+                                Quantity Available: <span className="font-semibold">{product.quantity}</span>
                             </p>
 
                             {/* Product Description */}
                             <p className="text-lg text-gray-700 mb-6">
-                                This is a brief description of the product. It explains its main features and why it's great for customers.
+                                {product.description && product.description.slice(0, 130)}
                             </p>
 
                             {/* Buy Button */}
@@ -46,23 +58,24 @@ export default function ProductDetails() {
                                 Buy Now
                             </button>
 
-                            {/* Buttons for Edit and Delete */}
                             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-6">
-                                {/* Edit Button */}
-                                <button
-                                    className="bg-green-600 text-white py-2 px-6 rounded-lg hover:bg-green-700 transition duration-300"
-                                    onClick={() => alert('Redirect to edit page')}
-                                >
-                                    Edit Product
-                                </button>
+                                {product._ownerId === userId &&
+                                    (<>
+                                        <Link
+                                            to={`/products/${product._id}/edit`}
+                                            className="inline-block bg-green-600 text-white py-2 px-6 rounded-lg text-lg font-semibold hover:bg-green-700 transition duration-300"
+                                        >
+                                            Edit Product
+                                        </Link>
 
-                                {/* Delete Button */}
-                                <button
-                                    className="bg-red-600 text-white py-2 px-6 rounded-lg hover:bg-red-700 transition duration-300"
-                                    onClick={() => alert('Confirm product deletion')}
-                                >
-                                    Delete Product
-                                </button>
+                                        < button
+                                            className="bg-red-600 text-white py-2 px-6 rounded-lg hover:bg-red-700 transition duration-300"
+                                            onClick={() => deleteProduct(productId)}
+                                        >
+                                            Delete Product
+                                        </button>
+                                    </>)
+                                }
                             </div>
                         </div>
                     </div>
@@ -71,7 +84,7 @@ export default function ProductDetails() {
                     <div className="mt-12">
                         <h3 className="text-2xl font-semibold text-green-800 mb-4">Full Product Description</h3>
                         <p className="text-gray-700">
-                            This product offers the best solution for your needs. With state-of-the-art technology and premium materials, it ensures durability and high performance. Whether you're buying it for personal use or as a gift, this product is designed to meet your expectations.
+                            {product.description}
                         </p>
                     </div>
 
@@ -80,7 +93,7 @@ export default function ProductDetails() {
                         <ReviewsSection />
                     </div>
                 </div>
-            </section>
+            </section >
         </>
     );
 }

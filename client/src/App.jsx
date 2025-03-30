@@ -12,6 +12,7 @@ import ProductEdit from './components/product-edit/ProductEdit'
 import { useState } from 'react'
 import { UserContext } from './contexts/UserContext'
 import './App.css'
+import NotFound from './components/not-found/NotFound'
 
 function App() {
     const [user, setUser] = useState({})
@@ -30,8 +31,9 @@ function App() {
                 <Route path='/logout' element={<Logout />} />
                 <Route path='/products' element={<ProductsPage />} />
                 <Route path='/products/add' element={<ProductCreate />} />
-                <Route path='/products/edit' element={<ProductEdit />} />
-                <Route path='/products/details' element={<ProductDetails />} />
+                <Route path='/products/:productId/edit' element={<ProductEdit />} />
+                <Route path='/products/:productId/details' element={<ProductDetails />} />
+                <Route path='*' element={<NotFound />} />
             </Routes>
 
             <Footer />

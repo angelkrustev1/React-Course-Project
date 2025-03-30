@@ -5,22 +5,11 @@ import request from "../../../utils/request";
 
 const productsUrl = 'http://localhost:3030/data/products'
 
-export default function useProductCreate() {
+export default function useProductDelete() {
     const navigate = useNavigate();
     const { accessToken } = useContext(UserContext)
 
-    const initialValues = {
-        title: '',
-        category: '',
-        price: 1,
-        quantity: 1,
-        imageUrl: '',
-        summary: '',
-    }
-
-    const create = async ({
-        values: productData
-    }) => {
+    const deleteProduct = async (productId) => {
         const abortController = new AbortController();
         const options = {
             headers: {
@@ -29,12 +18,9 @@ export default function useProductCreate() {
             signal: abortController.signal,
         }
 
-        await request.post(productsUrl, productData, options)
+        await request.delete(`${productsUrl}/${productId}`, null, options)
         navigate('/products')
     }
 
-    return {
-        initialValues,
-        create,
-    }
+    return { deleteProduct }
 }
