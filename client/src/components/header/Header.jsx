@@ -1,9 +1,9 @@
 import { Link } from "react-router";
-import useMobile from "./api/useMobile";
-import Dropdown from "./dropdown/Dropdown";
-import Navigation from "./navigation/Navigation";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
+import Dropdown from "./dropdown/Dropdown";
+import Navigation from "./navigation/Navigation";
+import useMobile from "./api/useMobile";
 
 export default function Header() {
     const { isMobile } = useMobile();

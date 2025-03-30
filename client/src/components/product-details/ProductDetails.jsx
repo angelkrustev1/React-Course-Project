@@ -1,9 +1,9 @@
 import { Link, useParams } from "react-router";
+import { useContext } from "react";
+import { UserContext } from "../../contexts/UserContext";
 import ReviewsSection from "../reviews-section/ReviewsSection";
 import Spiner from "../spiner/Spiner";
 import useFetch from "../../hooks/useFetch";
-import { useContext } from "react";
-import { UserContext } from "../../contexts/UserContext";
 import useProductDelete from "./api/useProductDelete";
 
 const baseUrl = 'http://localhost:3030/data/products';

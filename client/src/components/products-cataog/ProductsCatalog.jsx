@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import useFetch from "../../hooks/useFetch";
 import Spiner from "../spiner/Spiner";
+import Search from "../search/Search";
 import ProductItem from "./product-item/ProductItem";
 
 const productsUrl = 'http://localhost:3030/data/products';
@@ -10,6 +11,10 @@ export default function ProductsCatalog() {
 
     return (
         <>
+            <div className="mb-12">
+                <Search />
+            </div>
+
             {pending ? (
                 <Spiner />
             ) : products.length > 0 ? (
