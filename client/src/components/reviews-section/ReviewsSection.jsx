@@ -12,7 +12,7 @@ export default function ReviewsSection({ productId }) {
         return reviews.filter(review => review._productId === productId);
     }, [productId]);
 
-    const { _id, username, accessToken } = useContext(UserContext);
+    const { username, accessToken } = useContext(UserContext);
     const { pending, state: reviews, setState: setReviews } = useFetch(reviewsUrl, [], filterReviews);
 
     return (
@@ -29,24 +29,39 @@ export default function ReviewsSection({ productId }) {
                         {reviews.length > 0 ? (
                             reviews.map(review => (
                                 <Review
-                                key={review._id}
-                                onDelete={setReviews}
-                                { ...review }
+                                    key={review._id}
+                                    onDelete={setReviews}
+                                    {...review}
                                 />
                             ))
                         ) : (
-                            <p className="text-gray-700">No reviews yet.</p>
+                            <p className="text-gray-600 text-xl font-medium text-center mt-8 py-4 px-6 bg-gray-100 rounded-lg shadow-md">
+                                No reviews yet.
+                            </p>
                         )}
                     </div>
                 </>
             )}
 
             {/* Add a Review Section */}
-            {accessToken && <ReviewCreate
-            productId={productId}
-            username={username}
-            onCreate={setReviews}
-            />}
+            {!accessToken && (
+                <div className="mt-8 text-center py-4 px-6 bg-yellow-100 text-yellow-800 border-l-4 border-yellow-600 rounded-lg shadow-md">
+                    <p className="font-semibold text-lg">
+                        You need to be logged in to leave a review.
+                    </p>
+                    <p className="mt-2 text-sm">
+                        Please log in to share your thoughts about this product.
+                    </p>
+                </div>
+            )}
+
+            {accessToken && (
+                <ReviewCreate
+                    productId={productId}
+                    username={username}
+                    onCreate={setReviews}
+                />
+            )}
         </div>
     );
 }

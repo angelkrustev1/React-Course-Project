@@ -1,17 +1,26 @@
 import { Link, useParams } from "react-router";
 import ReviewsSection from "../reviews-section/ReviewsSection";
+import Spiner from "../spiner/Spiner";
 import useFetch from "../../hooks/useFetch";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import useProductDelete from "./api/useProductDelete";
 
-const baseUrl = 'http://localhost:3030/data/products'
+const baseUrl = 'http://localhost:3030/data/products';
 
 export default function ProductDetails() {
-    const { productId } = useParams()
-    const { _id: userId } = useContext(UserContext)
+    const { productId } = useParams();
+    const { _id: userId } = useContext(UserContext);
     const { deleteProduct } = useProductDelete();
-    const { pednign, state: product } = useFetch(`${baseUrl}/${productId}`)
+    const { pending, state: product } = useFetch(`${baseUrl}/${productId}`);
+
+    if (pending) {
+        return (
+            <div className="flex justify-center items-center py-16">
+                <Spiner /> {/* Show the spinner while data is loading */}
+            </div>
+        );
+    }
 
     return (
         <>
@@ -59,8 +68,8 @@ export default function ProductDetails() {
                             </button>
 
                             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-6">
-                                {product._ownerId === userId &&
-                                    (<>
+                                {product._ownerId === userId && (
+                                    <>
                                         <Link
                                             to={`/products/${product._id}/edit`}
                                             className="inline-block bg-green-600 text-white py-2 px-6 rounded-lg text-lg font-semibold hover:bg-green-700 transition duration-300"
@@ -68,14 +77,14 @@ export default function ProductDetails() {
                                             Edit Product
                                         </Link>
 
-                                        < button
+                                        <button
                                             className="bg-red-600 text-white py-2 px-6 rounded-lg hover:bg-red-700 transition duration-300"
                                             onClick={() => deleteProduct(productId)}
                                         >
                                             Delete Product
                                         </button>
-                                    </>)
-                                }
+                                    </>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -90,10 +99,10 @@ export default function ProductDetails() {
 
                     {/* Reviews Section */}
                     <div className="mt-12">
-                        <ReviewsSection productId={productId}/>
+                        <ReviewsSection productId={productId} />
                     </div>
                 </div>
-            </section >
+            </section>
         </>
     );
 }
