@@ -5,6 +5,7 @@ export default function ProductItem({
     name,
     imageUrl,
     description,
+    price,
 }) {
     return (
         <div className="bg-white shadow-lg rounded-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
@@ -25,7 +26,7 @@ export default function ProductItem({
                     {description && description.slice(0, 35)}...
                 </p>
                 {/* Price */}
-                <p className="text-2xl font-semibold text-green-700 mt-4">$99.99</p>
+                <p className="text-2xl font-semibold text-green-700 mt-4">${price}</p>
                 {/* Button */}
                 <Link
                     to={`/products/${_id}/details`}

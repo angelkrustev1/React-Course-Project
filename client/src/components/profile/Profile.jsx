@@ -6,7 +6,7 @@ export default function Profile() {
 
     return (
         <>
-            <div className="min-h-screen flex justify-center items-center bg-gradient-to-r from-gray-100 via-gray-200 to-gray-300 p-6">
+            <div className="min-h-screen flex justify-center items-center bg-gradient-to-r bg-gray-300 p-6">
                 {/* Profile Card */}
                 <div className="max-w-md w-full bg-white rounded-3xl shadow-xl p-8 transform transition-all hover:scale-105 duration-300 ease-in-out relative z-10">
                     {/* User Avatar */}
