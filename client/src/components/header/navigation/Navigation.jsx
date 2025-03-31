@@ -13,12 +13,12 @@ export default function Navigation() {
             </Link>
             {accessToken
                 ? (
-                    <>
-                        <Link to="/logout" className="text-white hover:text-green-200 transition duration-300">
-                            Logout
-                        </Link>
+                    <>  
                         <Link to="/products/add" className="text-white hover:text-green-200 transition duration-300">
                             Add Products
+                        </Link>
+                        <Link to="/logout" className="text-white hover:text-green-200 transition duration-300">
+                            Logout
                         </Link>
                     </>
                 )

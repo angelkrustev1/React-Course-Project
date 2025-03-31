@@ -25,11 +25,11 @@ export default function Dropdown() {
                     {accessToken
                         ? (
                             <>
-                                <Link to="/logout" className="block px-4 py-2 hover:bg-green-600">
-                                    Logout
-                                </Link>
                                 <Link to="/products/add" className="block px-4 py-2 hover:bg-green-600">
                                     Add Products
+                                </Link>
+                                <Link to="/logout" className="block px-4 py-2 hover:bg-green-600">
+                                    Logout
                                 </Link>
                             </>
                         )
