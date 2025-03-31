@@ -18,7 +18,7 @@ export default function Dropdown() {
 
             {/* Dropdown Menu */}
             {isOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-green-800 text-white rounded-lg shadow-lg">
+                <div className="absolute right-0 mt-2 w-48 bg-green-800 text-white rounded-lg shadow-lg z-10">
                     <Link to="/products" className="block px-4 py-2 hover:bg-green-600">
                         Products
                     </Link>
@@ -27,6 +27,9 @@ export default function Dropdown() {
                             <>
                                 <Link to="/products/add" className="block px-4 py-2 hover:bg-green-600">
                                     Add Products
+                                </Link>
+                                <Link to="/profile" className="block px-4 py-2 hover:bg-green-600">
+                                    Profile
                                 </Link>
                                 <Link to="/logout" className="block px-4 py-2 hover:bg-green-600">
                                     Logout

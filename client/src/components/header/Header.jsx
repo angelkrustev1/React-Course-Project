@@ -19,9 +19,6 @@ export default function Header() {
 
                 {/* Right Section: Email and Navigation */}
                 <div className="flex items-center space-x-6">
-                    {/* Email visible on all screen sizes */}
-                    <span className="text-white hover:text-green-200 transition duration-300">{username}</span>
-
                     {/* Navigation or Dropdown */}
                     <div className="flex items-center">
                         {isMobile ? <Dropdown /> : <Navigation />}
