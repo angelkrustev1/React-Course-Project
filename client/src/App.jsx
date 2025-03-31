@@ -1,5 +1,4 @@
 import { Route, Routes } from 'react-router'
-import { useState } from 'react'
 import { UserContext } from './contexts/UserContext'
 import Header from './components/header/Header'
 import Home from './components/home/Home'
@@ -14,9 +13,10 @@ import ProductEdit from './components/product-edit/ProductEdit'
 import NotFound from './components/not-found/NotFound'
 import Profile from './components/profile/Profile'
 import './App.css'
+import usePersistedState from './hooks/usePersistedState'
 
 function App() {
-    const [user, setUser] = useState({})
+    const [user, setUser] = usePersistedState('auth', {})
 
     const userLoginHandler = (authData) => setUser(authData)
     const userLogoutHandler = () => setUser({})
