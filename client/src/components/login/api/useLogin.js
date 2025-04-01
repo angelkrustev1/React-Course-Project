@@ -27,6 +27,7 @@ export default function useLogin() {
 
         userLoginHandler(userData);
         navigate('/products')
+        // navigate(-1)
     }
 
     return {

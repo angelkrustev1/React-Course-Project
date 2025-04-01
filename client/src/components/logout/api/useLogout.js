@@ -3,7 +3,7 @@ import { UserContext } from "../../../contexts/UserContext";
 import request from "../../../utils/request";
 
 const logoutUrl = 'http://localhost:3030/users/logout'
-// const logoutUrl = 'http://localhost:3030/users' // the server doesn't return 304 on this on
+// const logoutUrl = 'http://localhost:3030/users' // the server doesn't return 304 on this on, but still works
 
 export default function useLogout() {
     const { accessToken, userLogoutHandler } = useContext(UserContext);
