@@ -12,24 +12,15 @@ export default function useLogout() {
             return;
         }
 
-        const logout = async () => {
-            const options = {
-                headers: {
-                    'X-Authorization': accessToken,
-                },
-            };
-
-            try {
-                await request.get(logoutUrl, null, options);
-                userLogoutHandler();
-            } catch (error) {
-                if (error.name !== "AbortError") {
-                    console.error("Logout failed:", error);
-                }
+        const options = {
+            headers: {
+                'X-Authorization': accessToken,
             }
         };
 
-        logout();
+        request.get(logoutUrl, null, options)
+            .finally(userLogoutHandler);
+
     }, [accessToken, userLogoutHandler]);
 
     return { isLoggedOut: !accessToken };
