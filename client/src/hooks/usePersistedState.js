@@ -8,7 +8,7 @@ export default function usePersistedState(stateKey, initialState) {
             return typeof initialState === 'function'
                 ? initialState()
                 : initialState;
-        }
+        };
 
         const persistedStateData = JSON.parse(persistedState)
         return persistedStateData;
